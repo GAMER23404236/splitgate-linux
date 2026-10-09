@@ -1,0 +1,33 @@
+[Unit]
+Description=SplitGate - DPI bypass engine
+Documentation=file://@PREFIX@/share/doc/dpigec/README.md
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=@PREFIX@/bin/dpigec daemon
+# Even if the service crashes, the nftables redirect must not be left behind (it would cut the internet)
+ExecStopPost=-@PREFIX@/bin/dpigec cleanup
+Restart=on-failure
+RestartSec=3
+RuntimeDirectory=dpigec
+RuntimeDirectoryMode=0755
+RuntimeDirectoryPreserve=yes
+
+# Sıkılaştırma
+NoNewPrivileges=yes
+CapabilityBoundingSet=CAP_NET_ADMIN
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/run/dpigec
+# Her ağ için bulunan yöntem (/var/lib/dpigec/networks.json)
+StateDirectory=dpigec
+StateDirectoryMode=0755
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+LockPersonality=yes
+RestrictRealtime=yes
+
+[Install]
+WantedBy=multi-user.target

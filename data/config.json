@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "mode": "transparent",
+  "listen_port": 18443,
+  "dns_port": 15353,
+  "socks_port": 1080,
+  "fwmark": 17488,
+  "gateway": false,
+  "ipv6": true,
+  "strategy": {
+    "preset": "sni",
+    "positions": [
+      "1",
+      "midsld"
+    ],
+    "delay_ms": 1,
+    "oob": false,
+    "http_host_case": false,
+    "http_split": true
+  },
+  "dns": {
+    "enabled": true,
+    "providers": [
+      "cloudflare",
+      "google",
+      "quad9"
+    ],
+    "custom": {
+      "host": "",
+      "ips": [],
+      "path": "/dns-query"
+    },
+    "cache_seconds": 300,
+    "timeout": 5
+  },
+  "ports": [
+    80,
+    443
+  ],
+  "quic_block": true,
+  "domain_filter": {
+    "mode": "all",
+    "domains": []
+  },
+  "probe_domains": [
+    "discord.com",
+    "x.com",
+    "roblox.com",
+    "wattpad.com"
+  ],
+  "log_domains": false,
+  "log_level": "info"
+}

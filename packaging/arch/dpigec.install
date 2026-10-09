@@ -1,0 +1,14 @@
+post_install() {
+  echo ">> SplitGate installed. GUI: dpigec-gui   |   Service: systemctl enable --now dpigec"
+}
+
+post_upgrade() {
+  if systemctl is-active --quiet dpigec.service 2>/dev/null; then
+    echo ">> To use the new version: systemctl restart dpigec"
+  fi
+}
+
+pre_remove() {
+  systemctl disable --now dpigec.service >/dev/null 2>&1 || true
+  nft delete table inet dpigec >/dev/null 2>&1 || true
+}

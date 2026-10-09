@@ -1,0 +1,7 @@
+#!/usr/bin/python3 -I
+# Ayrıcalıklı yardımcı: pkexec ile root olarak çalıştırılır (bkz. org.dpigec.policy).
+import sys
+
+from dpigec.ctl import main
+
+sys.exit(main())

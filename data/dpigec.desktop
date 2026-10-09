@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=SplitGate
+GenericName=DPI bypass tool
+GenericName[tr]=DPI atlatma aracı
+Comment=Bypass DPI/SNI blocking and DNS poisoning
+Comment[tr]=Erişim engellerini (DPI/SNI, DNS zehirlemesi) aşar
+Exec=@PREFIX@/bin/dpigec-gui
+Icon=dpigec
+Terminal=false
+Categories=Network;Utility;
+Keywords=dpi;sni;dns;bypass;censorship;unblock;
+StartupNotify=true
+StartupWMClass=dpigec

@@ -1,0 +1,6 @@
+#!/usr/bin/python3 -I
+import sys
+
+from dpigec.cli import main
+
+sys.exit(main())

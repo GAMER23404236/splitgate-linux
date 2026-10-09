@@ -1,0 +1,13 @@
+#!/usr/bin/python3 -I
+import sys
+
+try:
+    from dpigec.gui.app import main
+except ImportError as exc:  # PyQt6 yoksa anlaşılır bir ileti ver
+    sys.stderr.write(
+        f"SplitGate could not start its window: {exc}\n"
+        "Is PyQt6 installed? Install it with your package manager (Arch/CachyOS: sudo pacman -S python-pyqt6).\n"
+        "Without a window you can still use: dpigec --help\n")
+    sys.exit(1)
+
+sys.exit(main())

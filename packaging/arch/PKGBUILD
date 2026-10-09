@@ -1,0 +1,23 @@
+# Maintainer: Project Gamers
+# Builds from the local source package:
+#   make dist && cp dist/dpigec-*.tar.gz packaging/arch/ && cd packaging/arch && makepkg -si
+pkgname=dpigec
+pkgver=1.1.0
+pkgrel=1
+pkgdesc='DPI bypass tool with a GUI: DoH + SNI splitting, nftables (Arch/CachyOS)'
+arch=('any')
+license=('GPL-3.0-or-later')
+depends=('python' 'nftables' 'polkit' 'systemd' 'python-pyqt6')
+backup=('etc/dpigec/config.json')
+install=dpigec.install
+source=("$pkgname-$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+package() {
+  cd "$pkgname-$pkgver"
+  local pyver
+  pyver="$(python -c 'import sys; print("%d.%d" % sys.version_info[:2])')"
+  make DESTDIR="$pkgdir" PREFIX=/usr \
+       PYSITE="/usr/lib/python${pyver}/site-packages" install
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
